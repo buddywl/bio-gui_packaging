@@ -23,7 +23,7 @@ along with PySQM.  If not, see <http://www.gnu.org/licenses/>.
 ____________________________
 """
 
-import os, sys
+import os
 import ephem
 import numpy as np
 import matplotlib

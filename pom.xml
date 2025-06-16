@@ -54,7 +54,7 @@
                         <configuration>
                             <mainClass>com.badlogicgames.packr.Packr</mainClass>
                             <classpath>
-                                <path>packr/packr-all.jar</path>
+                                <path>packr/packr-all.4.0.0.jar</path>
                             </classpath>
                             <arguments>
                                 <argument>packr/packr-config.json</argument>
@@ -74,10 +74,10 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.outputDirectory}/python</outputDirectory>
+                            <outputDirectory>target/python</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${project.basedir}/python</directory>
+                                    <directory>src/main/java/resources/python</directory>
                                     <includes>
                                         <include>**/*</include>
                                     </includes>
@@ -94,10 +94,10 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.outputDirectory}/python-scripts</outputDirectory>
+                            <outputDirectory>target/python-scripts</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${project.basedir}/python-scripts</directory>
+                                    <directory>src/main/java/resources/python-scripts</directory>
                                     <includes>
                                         <include>**/*</include>
                                     </includes>

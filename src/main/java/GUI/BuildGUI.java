@@ -1,4 +1,4 @@
-// Refactored BuildGUI.java with Auto-Refreshing Profile List via Static Reference
+package GUI;
 
 import javax.swing.*;
 import java.awt.*;

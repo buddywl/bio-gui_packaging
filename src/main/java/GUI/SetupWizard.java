@@ -1,3 +1,5 @@
+package GUI;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
@@ -175,7 +177,7 @@ public class SetupWizard extends JFrame {
     private void autoDetectSystem() {
         try {
             File configOut = new File("host_config.properties");
-            ProcessBuilder pb = new ProcessBuilder("python3", "../ssh/auto_setup.py");
+            ProcessBuilder pb = new ProcessBuilder("python/python.exe", "python-scripts/ssh/auto_setup.py");
             pb.redirectErrorStream(true);
             Process process = pb.start();
 
