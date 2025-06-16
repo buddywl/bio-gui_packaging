@@ -83,7 +83,7 @@ public class Utility {
             System.out.println("[DEBUG] File exists? " + backendFile.exists());
 
             // Prepare command
-            ProcessBuilder pb = new ProcessBuilder("python/python.exe", BACKEND_PATH, cmd);
+            ProcessBuilder pb = new ProcessBuilder("python3", BACKEND_PATH, cmd);
             pb.redirectErrorStream(true);
             Process p = pb.start();
 
@@ -170,7 +170,7 @@ public class Utility {
 
     public void startPythonBackend(){
         try{
-            ProcessBuilder pb=new ProcessBuilder("python/python.exe","-u",BACKEND_PATH);
+            ProcessBuilder pb=new ProcessBuilder("python3","-u",BACKEND_PATH);
             pb.redirectErrorStream(true);
             Process p=pb.start();
             new Thread(()->{

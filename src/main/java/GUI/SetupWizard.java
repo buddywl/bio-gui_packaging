@@ -177,7 +177,7 @@ public class SetupWizard extends JFrame {
     private void autoDetectSystem() {
         try {
             File configOut = new File("host_config.properties");
-            ProcessBuilder pb = new ProcessBuilder("python/python.exe", "python-scripts/ssh/auto_setup.py");
+            ProcessBuilder pb = new ProcessBuilder("python3", "python-scripts/ssh/auto_setup.py");
             pb.redirectErrorStream(true);
             Process process = pb.start();
 
@@ -496,7 +496,7 @@ public class SetupWizard extends JFrame {
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         JLabel label = new JLabel("Select a directory where your Raspberry Pi profiles will be saved:");
-        JTextField pathField = new JTextField(profileSaveDir.toString(), 30);
+        JTextField pathField = new JTextField("Choose a location to store RPi profiles", 30);
         pathField.setEditable(false);
 
         JButton toggleChooserButton = new JButton("Show File Chooser");
@@ -551,7 +551,7 @@ public class SetupWizard extends JFrame {
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         JLabel label = new JLabel("Select a directory where data synced from the rpi will be saved:");
-        JTextField pathField = new JTextField(SQMSaveDir.toString(), 30);
+        JTextField pathField = new JTextField("Choose a location to store synced data", 30);
         pathField.setEditable(false);
 
         JButton toggleChooserButton = new JButton("Show File Chooser");
