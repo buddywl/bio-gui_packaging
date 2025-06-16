@@ -1,0 +1,18 @@
+{
+  "platform": "windows64",
+  "jdk": "jre-win",
+  "executable": "GUIProject",
+  "classpath": [
+    "target/GUIProject-1.0-SNAPSHOT.jar"
+  ],
+  "mainclass": "GUI.BuildGUI",
+  "vmargs": [
+    "-Xmx512m"
+  ],
+  "resources": [
+    "src/main/resources/python",
+    "src/main/resources/python-scripts"
+  ],
+  "minimizejre": "soft",
+  "output": "target/packr-dist"
+}
