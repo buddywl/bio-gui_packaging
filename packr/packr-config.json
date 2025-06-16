@@ -1,5 +1,5 @@
 {
-  "platform": "windows64",
+  "platform": "windows32",
   "jdk": "jre-win",
   "executable": "GUIProject",
   "classpath": [
@@ -10,8 +10,8 @@
     "-Xmx512m"
   ],
   "resources": [
-    "src/main/resources/python",
-    "src/main/resources/python-scripts"
+    "target/python",
+    "target/python-scripts"
   ],
   "minimizejre": "soft",
   "output": "target/packr-dist"
