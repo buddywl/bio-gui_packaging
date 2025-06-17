@@ -2,6 +2,14 @@ import platform
 import subprocess
 import sys
 import importlib
+import os
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(current_dir)
+
+for root, dirs, files, in os.walk(current_dir):
+    for d in dirs:
+        sys.path.append(os.path.join(root, d))
 
 # External modules (must be provided)
 import ui_commands_ssh

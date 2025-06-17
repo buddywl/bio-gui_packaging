@@ -1,0 +1,18 @@
+{
+  "platform": "mac",
+  "jdk": "jre-mac",
+  "executable": "MPR-Bio-Remote",
+  "classpath": [
+    "target/MPR-Bio-Remote-1.0.jar"
+  ],
+  "mainclass": "GUI.BuildGUI",
+  "vmargs": [
+    "-Xmx512m"
+  ],
+  "resources": [
+    "python",
+    "python-scripts"
+  ],
+  "minimizejre": "soft",
+  "output": "app/mac/MPR-Bio-Remote.app"
+}

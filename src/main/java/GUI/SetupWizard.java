@@ -32,6 +32,8 @@ public class SetupWizard extends JFrame {
     private final Set<String> addedPanels = new HashSet<>(); // prevent duplicate inserts
 
     private int numCards = 10;
+    private File PYTHON_PATH = new File("python/python.exe");
+    private File SETUP_PATH = new File("python-scripts/ssh/auto_setup.py");
 
     public SetupWizard() {
         super("Initial Setup Wizard");
@@ -177,7 +179,7 @@ public class SetupWizard extends JFrame {
     private void autoDetectSystem() {
         try {
             File configOut = new File("host_config.properties");
-            ProcessBuilder pb = new ProcessBuilder("python3", "python-scripts/ssh/auto_setup.py");
+            ProcessBuilder pb = new ProcessBuilder(PYTHON_PATH.getAbsolutePath(), SETUP_PATH.getAbsolutePath());
             pb.redirectErrorStream(true);
             Process process = pb.start();
 

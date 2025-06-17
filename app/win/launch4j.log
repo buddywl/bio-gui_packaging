@@ -1,0 +1,20 @@
+
+
+Version:	3.50
+CmdLine:	C:\Users\buddy\Desktop\research\bio-gui_packaging\app2\MotheterRemote.exe --l4j-debug
+JNI:		No
+WOW64:		Yes
+Working dir:	C:\Users\buddy\Desktop\research\bio-gui_packaging\app2\.
+Requires JDK:	No
+Requires 64-Bit: No
+Java min ver:	
+Java max ver:	
+JRE paths:	jre-win
+Check launcher:	C:\Users\buddy\Desktop\research\bio-gui_packaging\app2\jre-win\bin\javaw.exe (OK)
+Version string: 1.021.000_007 / 64-Bit (OK)
+Main class:	GUI.BuildGUI
+Info:		Classpath not defined.
+Launcher:	C:\Users\buddy\Desktop\research\bio-gui_packaging\app2\jre-win\bin\javaw.exe
+Launcher args:	-classpath "C:\Users\buddy\Desktop\research\bio-gui_packaging\app2\MotheterRemote.exe" GUI.BuildGUI
+Args length:	99/32768 chars
+Exit code:	0
