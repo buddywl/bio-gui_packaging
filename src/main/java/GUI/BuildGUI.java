@@ -17,7 +17,7 @@ public class BuildGUI extends JFrame {
 //    private static Path PROFILE_DIR = util.getProfileSaveDirFromConfig();
 
     public BuildGUI() {
-        super("MotheterRemote");
+        super("MPR Bio Remote");
         Utility util = new Utility(console);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -139,15 +139,5 @@ public class BuildGUI extends JFrame {
             });
         }
     }
-//    public static void main(String[] args) {
-//        if (!setup) {
-//            SwingUtilities.invokeLater(SetupWizard::new);
-//            setup = true;
-//        } else {
-//            SwingUtilities.invokeLater(() -> {
-//                BuildGUI gui = new BuildGUI();
-//                gui.setVisible(true);
-//            });
-//        }
-//    }
+
 }

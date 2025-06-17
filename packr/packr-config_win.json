@@ -13,6 +13,7 @@
     "target/python",
     "target/python-scripts"
   ],
+  "icon": "src/main/resources/icon/moth.ico",
   "minimizejre": "soft",
-  "output": "target/packr-dist"
+  "output": "app/win/test"
 }
