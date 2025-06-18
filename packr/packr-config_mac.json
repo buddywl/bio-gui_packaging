@@ -10,9 +10,10 @@
     "-Xmx512m"
   ],
   "resources": [
-    "python",
-    "python-scripts"
+    "target/python",
+    "target/python-scripts"
   ],
+  "icon": "src/main/resources/icon/moth.ico",
   "minimizejre": "soft",
   "output": "app/mac/MPR-Bio-Remote.app"
 }

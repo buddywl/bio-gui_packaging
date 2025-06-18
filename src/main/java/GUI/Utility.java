@@ -16,7 +16,7 @@ public class Utility {
     private static final String CONFIG_PATH  = "python-scripts/ssh/configs_ssh.py";
     // Path to the Python backend we invoke with ProcessBuilder
     private static final File BACKEND_PATH = new File("python-scripts/ssh/host_ssh.py");
-    private static final File PYTHON_FILE = new File("python/python.exe");
+    private static File PYTHON_FILE = new File("python/python.exe");
 
     // Folder on host where rsync‑ed data will be stored
     private static final Path   DATA_DIR     = null;
@@ -32,6 +32,18 @@ public class Utility {
 
     private void setConfigs(JTextArea console){
         CONSOLE = console;
+    }
+
+    private String getPythonPath(){
+        String os = getDetectedOSType();
+        if(os.equalsIgnoreCase("windows")){
+            PYTHON_FILE = new File("python/python.exe");
+        } else if(os.equalsIgnoreCase("mac")){
+            PYTHON_FILE = new File("python/python.exe");
+        }else{
+            return "python3";
+        }
+        return PYTHON_FILE.getAbsolutePath();
     }
 
 
@@ -84,7 +96,7 @@ public class Utility {
             System.out.println("[DEBUG] File exists? " + backendFile.exists());
 
             // Prepare command
-            ProcessBuilder pb = new ProcessBuilder(PYTHON_FILE.getAbsolutePath(), BACKEND_PATH.getAbsolutePath(), cmd);
+            ProcessBuilder pb = new ProcessBuilder(getPythonPath(), BACKEND_PATH.getAbsolutePath(), cmd);
             pb.redirectErrorStream(true);
             Process p = pb.start();
 
@@ -171,7 +183,7 @@ public class Utility {
 
     public void startPythonBackend(){
         try{
-            ProcessBuilder pb=new ProcessBuilder(PYTHON_FILE.getAbsolutePath(),"-u",BACKEND_PATH.getAbsolutePath());
+            ProcessBuilder pb=new ProcessBuilder(getPythonPath(),"-u",BACKEND_PATH.getAbsolutePath());
             pb.redirectErrorStream(true);
             Process p=pb.start();
             new Thread(()->{

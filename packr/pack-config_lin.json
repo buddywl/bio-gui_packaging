@@ -1,0 +1,19 @@
+{
+  "platform": "linux64",
+  "jdk": "jre-linux",
+  "executable": "MPR-Bio-Remote",
+  "classpath": [
+    "target/MPR-Bio-Remote-1.0.jar"
+  ],
+  "mainclass": "GUI.BuildGUI",
+  "vmargs": [
+    "-Xmx512m"
+  ],
+  "resources": [
+    "target/python",
+    "target/python-scripts"
+  ],
+  "icon": "icon/moth.png",
+  "minimizejre": "soft",
+  "output": "app/linux/test"
+}
