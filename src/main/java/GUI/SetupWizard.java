@@ -32,7 +32,6 @@ public class SetupWizard extends JFrame {
     private final Set<String> addedPanels = new HashSet<>(); // prevent duplicate inserts
 
     private int numCards = 10;
-    private File PYTHON_PATH = new File("python/python.exe");
     private File SETUP_PATH = new File("python-scripts/ssh/auto_setup.py");
 
     public SetupWizard() {
@@ -179,7 +178,7 @@ public class SetupWizard extends JFrame {
     private void autoDetectSystem() {
         try {
             File configOut = new File("host_config.properties");
-            ProcessBuilder pb = new ProcessBuilder(PYTHON_PATH.getAbsolutePath(), SETUP_PATH.getAbsolutePath());
+            ProcessBuilder pb = new ProcessBuilder(util.getPythonPath(), SETUP_PATH.getAbsolutePath());
             pb.redirectErrorStream(true);
             Process process = pb.start();
 
@@ -639,7 +638,7 @@ public class SetupWizard extends JFrame {
             }
 //            case "mac"     -> {
 //            }
-            case "linux"   -> {
+            case "linux", "mac"   -> {
                 setup_linux linux = new setup_linux(util);
                 panel = linux.buildSSH_Step1();
             }
@@ -779,7 +778,7 @@ public class SetupWizard extends JFrame {
             }
 //            case "mac"     -> {
 //            }
-            case "linux"   -> {
+            case "linux", "mac"   -> {
                 setup_linux linux = new setup_linux(util);
                 panel = linux.buildSSH_Step2();
             }
@@ -796,7 +795,7 @@ public class SetupWizard extends JFrame {
             }
 //            case "mac"     -> {
 //            }
-            case "linux"   -> {
+            case "linux", "mac"   -> {
                 setup_linux linux = new setup_linux(util);
                 panel = linux.buildSSH_Step3();
             }

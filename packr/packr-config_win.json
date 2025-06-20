@@ -15,5 +15,5 @@
   ],
   "icon": "src/main/resources/icon/moth.ico",
   "minimizejre": "soft",
-  "output": "app/win/test"
+  "output": "app/win/test2/MPR-Bio-Remote.exe"
 }

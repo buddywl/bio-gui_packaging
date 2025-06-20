@@ -34,12 +34,12 @@ public class Utility {
         CONSOLE = console;
     }
 
-    private String getPythonPath(){
+    String getPythonPath(){
         String os = getDetectedOSType();
         if(os.equalsIgnoreCase("windows")){
             PYTHON_FILE = new File("python/python.exe");
         } else if(os.equalsIgnoreCase("mac")){
-            PYTHON_FILE = new File("python/python.exe");
+            PYTHON_FILE = new File("python/python.pkg");
         }else{
             return "python3";
         }

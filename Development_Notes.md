@@ -77,6 +77,9 @@ project-root/
 ├── pom.xml                    ← Maven build settings and plugins here
 └── target/                    ← Output .jar/.exe
 ```
+As the backend script runs, it establishes an SSH connection to the Raspberry Pi using credentials defined in a configuration file. It executes the requested remote shell commands or Python routines on the sensor node, then relays output and error messages back to its own standard output. Meanwhile, the Java GUI continuously reads this output stream using an InputStreamReader inside a dedicated background thread. Each line received from the backend is appended to a live console panel embedded in the GUI, providing users with immediate feedback about the command’s progress and outcome.
+
+
 ### `BuildGUI.java`
 Contains the constructor for the full GUI
 * calls each of `RPiCommandTab.java`, `SensorCommandTab.java`, `DataTab.java`, etc. to build the tabs of the GUI
