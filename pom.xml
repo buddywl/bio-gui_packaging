@@ -105,26 +105,6 @@
                             </resources>
                         </configuration>
                     </execution>
-
-<!--                    &lt;!&ndash; Copy profiles/ folder &ndash;&gt;-->
-<!--                    <execution>-->
-<!--                        <id>copy-profiles</id>-->
-<!--                        <phase>prepare-package</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>copy-resources</goal>-->
-<!--                        </goals>-->
-<!--                        <configuration>-->
-<!--                            <outputDirectory>${project.build.outputDirectory}/profiles</outputDirectory>-->
-<!--                            <resources>-->
-<!--                                <resource>-->
-<!--                                    <directory>${project.basedir}/src/main/java/GUI/profiles</directory>-->
-<!--                                    <includes>-->
-<!--                                        <include>**/*</include>-->
-<!--                                    </includes>-->
-<!--                                </resource>-->
-<!--                            </resources>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
                 </executions>
             </plugin>
         </plugins>
