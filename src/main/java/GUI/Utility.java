@@ -35,15 +35,17 @@ public class Utility {
     }
 
     String getPythonPath(){
+        String path = "";
         String os = getDetectedOSType();
         if(os.equalsIgnoreCase("windows")){
             PYTHON_FILE = new File("python/python.exe");
+            path = PYTHON_FILE.getAbsolutePath();
         } else if(os.equalsIgnoreCase("mac")){
             PYTHON_FILE = new File("python3");
         }else{
-            return "python3";
+            path = "python3";
         }
-        return PYTHON_FILE.getAbsolutePath();
+        return path;
     }
 
 
