@@ -1,0 +1,11 @@
+{
+  "jrePath": "jre",
+  "classPath": [
+    "MPR-Bio-Remote-1.0.jar"
+  ],
+  "mainClass": "GUI.BuildGUI",
+  "useZgcIfSupportedOs": false,
+  "vmArgs": [
+    "-Xmx512m"
+  ]
+}
