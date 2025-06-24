@@ -120,6 +120,7 @@ Contains the constructor for the Settings Tab
     * `addProfile()`
     * `deleteProfile()`
 * **return**
+
 ### `HelpTab.java`
 This tab goes more in depth on each of the GUI tabs and how to use it.
 * dropdown menu to access pages on more specific parts of the help center:
@@ -137,29 +138,69 @@ This tab goes more in depth on each of the GUI tabs and how to use it.
 ### `Utility.java`
 Contains the utility methods used across all GUI tabs
 * `sendCommand(String cmd)`
-    * takes in command string and sends that to the python backend
+  * Runs the Python backend script with a given command and streams the output to the GUI console.
+  * How it works:
+    * Validates the command is not blank. 
+    * Builds a `ProcessBuilder` with the Python interpreter, backend script, and the command. 
+    * Starts the process, reads its stdout line by line, appends it to the GUI console, and shows a toast indicating success or error.
+
 * `append(String txt)`
-    *
+  * Safely appends a line of text to the GUI console on the Swing event thread.
+  * How it works:
+    * Uses `SwingUtilities.invokeLater` to ensure thread safety. 
+    * Adds the text and auto-scrolls to the end.
+
 * `updateConfigsPy(String RpiName, String RpiAddr)`
-    *
+  * Updates the `configs_ssh.py` file to change `rpi_name` and `rpi_addr` variables.
+  * **How it works:**
+    * Reads the file line by line. 
+    * Replaces lines starting with `rpi_name =` or `rpi_addr =` with new values. 
+    * Writes the updated content back to the same file.
+
 * `wrapWithRightPanel(JPanel main, JPanel side)`
-    *
+  * Wraps a main panel with a right-side panel for layout purposes (side panel on the EAST).
+  * How it works:
+    * Creates a `BorderLayout` container. 
+    * Puts the main in the `CENTER`. 
+    * Sets a preferred width for the side and places it in the `EAST`.
+
 * `startPythonBackend()`
     *
 * `copyToClipboard(String text)`
-    *
+    * Copies the given text to the system clipboard.
+    * How it works:
+      * Uses `Toolkit` and `StringSelection`.
+
 * Getters:
-    * `getProfileSaveDirFromConfig()`
-        *
-    * `getSQMSaveDirFromConfig()`
-        *
-    * `getDetectedOSType()`
-        *
+  * `getProfileSaveDirFromConfig()`
+    * Reads the profile_save_path property from host_config.properties.
+    * How it works:
+      * Loads the properties file. 
+      * Returns the Path if present and not blank; otherwise null.
+
+  * `getSQMSaveDirFromConfig()`
+    * Same as above, but for the sqm_data_path property.
+
+  * `getDetectedOSType()`
+    * Parses host_config.properties to get the saved OS type (OS= line).
+    * How it works:
+      * Reads the file line by line. 
+      * If OS= line found, returns the value in lowercase. 
+      * If not found or error, returns "unknown".
+
 * Builders:
-    * `buildTextArea(JPanel panel, int height)`
-        *
-    * `buildCopyRow(String command, int height)`
-        *
+  * `buildTextArea(JPanel panel, int height)`
+    * Creates a read-only, word-wrapped JTextArea sized to match the design’s preferred width.
+    * How it works:
+      * Sets background same as parent. 
+      * Uses preferredWidth and setFullWidth helper.
+
+  * `buildCopyRow(String command, int height)`
+    * Creates a reusable UI row with a read-only text field and a "Copy" button for that command.
+    * How it works:
+      * Uses BoxLayout for horizontal arrangement. 
+      * Copy button copies the command to clipboard. 
+      * Constrains max width for layout consistency.
 
 ### `SetupWizard.java`
 ### `setup_linux.java`
