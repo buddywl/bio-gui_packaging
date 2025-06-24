@@ -32,7 +32,7 @@ public class SetupWizard extends JFrame {
     private final Set<String> addedPanels = new HashSet<>(); // prevent duplicate inserts
 
     private int numCards = 10;
-    private File SETUP_PATH = new File("python-scripts/ssh/auto_setup.py");
+    private final File SETUP_PATH = new File("python-scripts/ssh/auto_setup.py");
 
     public SetupWizard() {
         super("Initial Setup Wizard");
@@ -342,10 +342,10 @@ public class SetupWizard extends JFrame {
         step1.add(new JLabel("Step 1: Create a Tailscale Account"));
         step1.add(Box.createRigidArea(new Dimension(0, 10)));
 
-        JTextArea I1 = util.buildTextArea(step1, 75);
+        JTextArea I1 = util.buildTextArea(step1, 50);
         I1.setText("Log in to Tailscale with a GitHub account; this can be a personal or organization account. Other users can be added later via email or an invite link, but only three users are allowed on a free plan.");
         step1.add(I1);
-        step1.add(Box.createRigidArea(new Dimension(0, 10)));
+        step1.add(Box.createRigidArea(new Dimension(0, 30)));
 
         // STEP 1:
         JPanel step2 = new JPanel();
@@ -357,7 +357,7 @@ public class SetupWizard extends JFrame {
         I2a.setText("On your computer, open up a browser, go to the Tailscale download page and get the app. The link can be found below:");
         String link = "https://tailscale.com/download";
         JPanel tailscaleDwnld = buildCopyRow(link);
-        JTextArea I2b = util.buildTextArea(step1, 30);
+        JTextArea I2b = util.buildTextArea(step1, 15);
         I2b.setText("Up to a hundred devices can be added for free, so don't worry about having too many devices online.");
 
         step2.add(I2a);
@@ -365,11 +365,72 @@ public class SetupWizard extends JFrame {
         step2.add(tailscaleDwnld);
         step2.add(Box.createRigidArea(new Dimension(0, 10)));
         step2.add(I2b);
-        step2.add(Box.createRigidArea(new Dimension(0, 10)));
+        step2.add(Box.createRigidArea(new Dimension(0, 30)));
+
+        // STEP 3:
+        JPanel step3 = new JPanel();
+        step3.setLayout(new BoxLayout(step3, BoxLayout.Y_AXIS));
+        step3.add(new JLabel("Step 3: Set up Tailscale on your RPi"));
+        step3.add(Box.createRigidArea(new Dimension(0, 10)));
+
+        JTextArea I3 = util.buildTextArea(step1, 50);
+        I3.setText("Now, you must set up Tailscale on your Raspberry Pi. Make sure to follow this step for each RPi module you are using. Your RPi also probably runs Raspbian Bullseye, (If you don't know what Raspbian Bullseye is, then most likely the raspberry pi is using it by default), if this is the case, run the following commands in your terminal on your RPi:");
+
+        String copy1Cmd = "sudo apt-get install apt-transport-https";
+        JPanel RB_1_SSHRow = util.buildCopyRow(copy1Cmd, 30);
+
+        String copy2Cmd = "curl -fsSL https://pkgs.tailscale.com/stable/raspbian/bullseye.noarmor.gpg | sudo tee /usr/share/keyrings/tailscale-archive-keyring.gpg > /dev/null\n";
+        JPanel RB_2_SSHRow = util.buildCopyRow(copy2Cmd, 60);
+
+        String copy3Cmd = "curl -fsSL https://pkgs.tailscale.com/stable/raspbian/bullseye.tailscale-keyring.list | sudo tee /etc/apt/sources.list.d/tailscale.list\n";
+        JPanel RB_3_SSHRow = util.buildCopyRow(copy3Cmd, 60);
+
+        String copy4Cmd = "sudo apt-get update";
+        JPanel RB_4_SSHRow = util.buildCopyRow(copy4Cmd, 30);
+
+        String copy5Cmd = "sudo apt-get install tailscale";
+        JPanel RB_5_SSHRow = util.buildCopyRow(copy5Cmd, 30);
+
+        JTextArea E3 = util.buildTextArea(step1, 30);
+        E3.setText("These commands install a transport plugin, adds Tailscale's package signing key and repository, and finally, installs tailscale.");
+
+        step3.add(I3);
+        step3.add(Box.createRigidArea(new Dimension(0, 10)));
+        step3.add(RB_1_SSHRow);
+        step3.add(Box.createRigidArea(new Dimension(0, 10)));
+        step3.add(RB_2_SSHRow);
+        step3.add(Box.createRigidArea(new Dimension(0, 10)));
+        step3.add(RB_3_SSHRow);
+        step3.add(Box.createRigidArea(new Dimension(0, 10)));
+        step3.add(RB_4_SSHRow);
+        step3.add(Box.createRigidArea(new Dimension(0, 10)));
+        step3.add(RB_5_SSHRow);
+        step3.add(Box.createRigidArea(new Dimension(0, 10)));
+        step3.add(E3);
+        step3.add(Box.createRigidArea(new Dimension(0, 30)));
+
+        // STEP 3:
+        JPanel step4 = new JPanel();
+        step4.setLayout(new BoxLayout(step4, BoxLayout.Y_AXIS));
+        step4.add(new JLabel("Step 4: Connect your Machine to your Tailscale Network:"));
+        step4.add(Box.createRigidArea(new Dimension(0, 10)));
+
+        JTextArea I4 = util.buildTextArea(step1, 80);
+        I4.setText("The last step in setting up Tailscale requires you to  connect your machine to your Tailscale network and authenticate in your browser. Running the following command will generate a link which will allow you to log in in your browser. You can go to this link from another device, if you don't want to deal with using a web browser on a headless Pi.");
+
+        String linkCmd = "sudo tailscale up";
+        JPanel linkSSHRow = util.buildCopyRow(linkCmd, 30);
+
+        step4.add(I4);
+        step4.add(Box.createRigidArea(new Dimension(0, 10)));
+        step4.add(linkSSHRow);
+        step4.add(Box.createRigidArea(new Dimension(0, 10)));
 
         // add to panel
         inner.add(step1);
         inner.add(step2);
+        inner.add(step3);
+        inner.add(step4);
 
         JScrollPane scroll = new JScrollPane(inner);
         scroll.setBorder(null);
@@ -420,6 +481,8 @@ public class SetupWizard extends JFrame {
 
         JPanel inner = new JPanel();
         inner.setLayout(new BoxLayout(inner, BoxLayout.Y_AXIS));
+
+        // STEP 1:
 
         panel.add(title, BorderLayout.NORTH);
         panel.add(inner, BorderLayout.CENTER);
@@ -917,29 +980,61 @@ public class SetupWizard extends JFrame {
             System.err.println("[Setup] Failed to save host config paths: " + e.getMessage());
         }
     }
-    public void updatePathPy(String newPath) {
-        try {
-            File file = new File("../ssh/configs_ssh.py");
-            BufferedReader reader = new BufferedReader(new FileReader(file));
-            StringBuilder content = new StringBuilder();
-
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (line.trim().startsWith("host_data_path ="))
-                    line = "host_data_path = \"" + newPath + "\"";
-
-                content.append(line).append("\n");
-            }
-            reader.close();
-
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-            writer.write(content.toString());
-            writer.close();
-
-        } catch (IOException e) {
-            util.append("[Error] configs.py update failed: " + e.getMessage());
+//    public void updatePathPy(String newPath) {
+//        try {
+//            File file = new File("python-scripts/ssh/configs_ssh.py");
+//            BufferedReader reader = new BufferedReader(new FileReader(file));
+//            StringBuilder content = new StringBuilder();
+//
+//            String line;
+//            while ((line = reader.readLine()) != null) {
+//                if (line.trim().startsWith("host_data_path ="))
+//                    line = "host_data_path = \"" + newPath + "\"";
+//
+//                content.append(line).append("\n");
+//            }
+//            reader.close();
+//
+//            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+//            writer.write(content.toString());
+//            writer.close();
+//
+//        } catch (IOException e) {
+//            util.append("[Error] configs.py update failed: " + e.getMessage());
+//        }
+//    }
+public void updatePathPy(String newPath) {
+    try {
+        String pythonPath;
+        if (detectedOS.equals("windows")) {
+            // Escape backslashes for Windows Python
+            pythonPath = newPath.replace("\\", "\\\\");
+        } else {
+            // Keep forward slashes for Linux/Mac
+            pythonPath = newPath;
         }
+
+        File file = new File("python-scripts/ssh/configs_ssh.py");
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        StringBuilder content = new StringBuilder();
+
+        String line;
+        while ((line = reader.readLine()) != null) {
+            if (line.trim().startsWith("host_data_path ="))
+                line = "host_data_path = \"" + pythonPath + "\"";
+            content.append(line).append("\n");
+        }
+        reader.close();
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+        writer.write(content.toString());
+        writer.close();
+
+    } catch (IOException e) {
+        util.append("[Error] configs.py update failed: " + e.getMessage());
     }
+}
+
 
 
     private void saveProfilesAndExit() {

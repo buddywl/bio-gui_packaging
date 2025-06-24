@@ -39,7 +39,7 @@ public class Utility {
         if(os.equalsIgnoreCase("windows")){
             PYTHON_FILE = new File("python/python.exe");
         } else if(os.equalsIgnoreCase("mac")){
-            PYTHON_FILE = new File("python/python.pkg");
+            PYTHON_FILE = new File("python3");
         }else{
             return "python3";
         }

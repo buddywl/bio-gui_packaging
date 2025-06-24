@@ -39,30 +39,30 @@
                 </executions>
             </plugin>
 
-            <!-- Runs Packr to bundle jar + JRE -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>3.1.0</version>
-                <executions>
-                    <execution>
-                        <id>run-packr</id>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>java</goal>
-                        </goals>
-                        <configuration>
-                            <mainClass>com.badlogicgames.packr.Packr</mainClass>
-                            <classpath>
-                                <path>packr/packr-all.4.0.0.jar</path>
-                            </classpath>
-                            <arguments>
-                                <argument>packr/packr-config.json</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+<!--            &lt;!&ndash; Runs Packr to bundle jar + JRE &ndash;&gt;-->
+<!--            <plugin>-->
+<!--                <groupId>org.codehaus.mojo</groupId>-->
+<!--                <artifactId>exec-maven-plugin</artifactId>-->
+<!--                <version>3.1.0</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>run-packr</id>-->
+<!--                        <phase>install</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>java</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <mainClass>com.badlogicgames.packr.Packr</mainClass>-->
+<!--                            <classpath>-->
+<!--                                <path>packr/packr-all.4.0.0.jar</path>-->
+<!--                            </classpath>-->
+<!--                            <arguments>-->
+<!--                                <argument>packr/packr-config.json</argument>-->
+<!--                            </arguments>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
             <!-- Copy python/ folder -->
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>

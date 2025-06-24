@@ -1,6 +1,5 @@
 """
 Please update this file with the correct information for your setup before trying to run anything.
-If using the GUI please run readConfigs.py located in /GUI to update config.properties
 """
 
 # connection type to first RPi.
