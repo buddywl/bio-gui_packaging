@@ -40,8 +40,6 @@ public class Utility {
         if(os.equalsIgnoreCase("windows")){
             PYTHON_FILE = new File("python/python.exe");
             path = PYTHON_FILE.getAbsolutePath();
-        } else if(os.equalsIgnoreCase("mac")){
-            PYTHON_FILE = new File("python3");
         }else{
             path = "python3";
         }
