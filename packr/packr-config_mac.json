@@ -13,7 +13,7 @@
     "target/python",
     "target/python-scripts"
   ],
-  "icon": "src/main/resources/icon/moth.ico",
+  "icon": "src/main/resources/icon/moth.icns",
   "minimizejre": "soft",
   "output": "app/mac/MPR-Bio-Remote.app"
 }
