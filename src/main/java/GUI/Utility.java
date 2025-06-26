@@ -34,6 +34,10 @@ public class Utility {
         CONSOLE = console;
     }
 
+    /**
+     * Detects and returns the appropriate Python executable path for the host OS.
+     * @return Python interpreter path as String.
+     */
     String getPythonPath(){
         String path = "";
         String os = getDetectedOSType();
@@ -46,7 +50,11 @@ public class Utility {
         return path;
     }
 
-
+    /**
+     * Updates the rpi_name and rpi_addr fields in the configs_ssh.py file.
+     * @param newRpiName New Raspberry Pi name.
+     * @param newRpiAddr New Raspberry Pi address.
+     */
     public void updateConfigsPy(String newRpiName,  String newRpiAddr) {
         try {
             File file = new File(CONFIG_PATH);
@@ -73,6 +81,12 @@ public class Utility {
         }
     }
 
+    /**
+     * Wraps a main panel with a right-side panel for layout.
+     * @param main The main content panel.
+     * @param side The side panel to attach to the right.
+     * @return A new wrapper JPanel with both components.
+     */
     public JPanel wrapWithRightPanel(JPanel main, JPanel side) {
         JPanel wrapper = new JPanel(new BorderLayout());
         wrapper.add(main, BorderLayout.CENTER);
@@ -80,6 +94,11 @@ public class Utility {
         wrapper.add(side, BorderLayout.EAST);
         return wrapper;
     }
+
+    /**
+     * Runs the Python backend script with a command and streams its output to the console.
+     * @param cmd The command string to send.
+     */
     public void sendCommand(String cmd) {
         if (cmd == null || cmd.isBlank()) {
             System.out.println("[DEBUG] Command is null or blank — skipping.");
@@ -133,7 +152,13 @@ public class Utility {
         }
     }
 
-
+    /**
+     * Shows a temporary toast-style popup message on the bottom-right of the parent window.
+     * @param parentComponent A component inside the parent window.
+     * @param message The message to display.
+     * @param type Message type ("success", "error", etc.)
+     * @param durationMillis How long to show the toast in milliseconds.
+     */
     public void showToast(Component parentComponent, String message, String type, int durationMillis) {
         SwingUtilities.invokeLater(() -> {
             JWindow toast = new JWindow(SwingUtilities.getWindowAncestor(parentComponent));
@@ -179,8 +204,9 @@ public class Utility {
         });
     }
 
-
-
+    /**
+     * Starts the Python backend process in unbuffered mode and streams its output to the console.
+     */
     public void startPythonBackend(){
         try{
             ProcessBuilder pb=new ProcessBuilder(getPythonPath(),"-u",BACKEND_PATH.getAbsolutePath());
@@ -194,6 +220,10 @@ public class Utility {
         }catch(IOException ex){ append("\n     [GUI] Can't start backend: "+ex.getMessage()); }
     }
 
+    /**
+     * Safely appends a message to the console and scrolls to the bottom.
+     * @param txt The text to append.
+     */
     public void append(String txt){
         SwingUtilities.invokeLater(() -> {
             CONSOLE.append(txt+"\n");
@@ -201,12 +231,22 @@ public class Utility {
         });
     }
 
+    /**
+     * Copies the given text to the system clipboard.
+     * @param text The text to copy.
+     */
     private void copyToClipboard(String text) {
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(
                 new StringSelection(text), null
         );
     }
 
+    /**
+     * Builds a horizontal row with a read-only text field and a "Copy" button.
+     * @param command The command string to show.
+     * @param height The preferred height of the row.
+     * @return The assembled JPanel.
+     */
     JPanel buildCopyRow(String command, int height){
         JPanel row = new JPanel();
         row.setLayout(new BoxLayout(row, BoxLayout.X_AXIS));
@@ -231,6 +271,12 @@ public class Utility {
         comp.setMaximumSize(d);
     };
 
+    /**
+     * Builds a read-only, word-wrapped JTextArea with consistent styling.
+     * @param panel The parent panel to inherit background color.
+     * @param height The preferred height of the text area.
+     * @return The configured JTextArea.
+     */
     JTextArea buildTextArea(JPanel panel, int height){
         JTextArea textArea = new JTextArea();
         textArea.setEditable(false);
@@ -242,6 +288,11 @@ public class Utility {
 
         return textArea;
     }
+
+    /**
+     * Reads the profile save directory from host_config.properties.
+     * @return The Path to the profile save directory, or null if not set.
+     */
     public Path getProfileSaveDirFromConfig() {
         Path configPath = Paths.get("host_config.properties");
 
@@ -258,6 +309,10 @@ public class Utility {
         }
     }
 
+    /**
+     * Reads the SQM data save directory from host_config.properties.
+     * @return The Path to the SQM data save directory, or null if not set.
+     */
     public Path getSQMSaveDirFromConfig() {
         Path configPath = Paths.get("host_config.properties");
 
@@ -274,8 +329,10 @@ public class Utility {
         }
     }
 
-
-
+    /**
+     * Detects the host OS type by reading host_config.properties.
+     * @return The detected OS name in lowercase, or "unknown" if not found.
+     */
     String getDetectedOSType() {
         File configFile = new File("host_config.properties");
 
