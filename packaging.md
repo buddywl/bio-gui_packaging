@@ -94,4 +94,15 @@ First of all, make sure maven is installed on your system. if you have hombrew, 
 
 3) Run `MPR-Bio-Remote.app` by navigating to the output directory and double-clicking on it
 
-I wasn't able to do that much testing for the app on mac, and I am a bit skeptical that everything is actually included in the .app because where do the resources even go? are they contained inside the .app? Also, the SetupWizard creates a host_config.properties file which contains the file path to where profiles are stored and where data will be synced to but i don't know where that ends upp with the mac app because in windows it just goes into the project directory... Anyways, I am hoping that as long as your python is up-to-date it works as it should.
+[//]: # (I wasn't able to do that much testing for the app on mac, and I am a bit skeptical that everything is actually included in the .app because where do the resources even go? are they contained inside the .app? Also, the SetupWizard creates a host_config.properties file which contains the file path to where profiles are stored and where data will be synced to but i don't know where that ends upp with the mac app because in windows it just goes into the project directory... Anyways, I am hoping that as long as your python is up-to-date it works as it should.)
+
+### Wrapping as .dmg
+```
+npx create-dmg 'app/mac/MPR-Bio-Remote.app' \
+--overwrite \
+--dmg-title="MPR-Bio-Remote" \
+--icon "MPR-Bio-Remote.app" 150 150 \
+--window-size 500 300 \
+--app-drop-link 350 150 \
+dist/
+```
