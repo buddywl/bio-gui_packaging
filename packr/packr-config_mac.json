@@ -15,5 +15,5 @@
   ],
   "icon": "src/main/resources/icon/moth.icns",
   "minimizejre": "soft",
-  "output": "app/mac/MPR-Bio-Remote.app"
+  "output": "app/mac2/MPR-Bio-Remote"
 }
